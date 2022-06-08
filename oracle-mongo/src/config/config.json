@@ -1,0 +1,19 @@
+{
+    "dev": {
+      "ORACLE": {
+        "activa": true,
+        "username": "LAB",
+        "password": "LAB",
+        "host": "127.0.0.1",
+        "database":"ORT_LAB",
+        "port": "15210"
+      },
+      "MONGO": {
+        "activa": true,
+        "uri": "mongodb://localhost:27017/ort",
+        "options": {
+          "debug": true
+        }
+      }
+    }
+  }
