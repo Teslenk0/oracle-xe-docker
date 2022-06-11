@@ -3,23 +3,20 @@ const fs = require('fs');
 const { inicializarConexionesDB, obtenerInstanciaKnex } = require('./db');
 const EmisionesServicio = require('./servicios/emisiones.servicio');
 
-const main = async () => {
+const main = async (args) => {
+    const { fechaEmision } = args;
+
     await inicializarConexionesDB();
-
-    const knex = obtenerInstanciaKnex();
-
-    knex.select().from("USUARIO").asCallback(function(err, rows){
-        if(err)
-            console.log(err);
-        else
-            console.table(rows);
-    });
     
     const emisionesServicio = new EmisionesServicio();
 
-    const res = emisionesServicio.obtenerEmisiones();
+    const res = await emisionesServicio.obtenerEmisionesPorFecha(fechaEmision);
 
     fs.writeFileSync('./data/emisiones.json', JSON.stringify(res), 'utf-8');
+
+    console.log("Se escribio el archivo data/emisiones.json con el resultado");
+
+    process.exit(0);
 }
 
 module.exports = main;
