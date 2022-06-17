@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const { inicializarConexionesDB, obtenerInstanciaKnex } = require('./db');
+const { inicializarConexionesDB } = require('./db');
 const EmisionesServicio = require('./servicios/emisiones.servicio');
 
 const main = async (args) => {
